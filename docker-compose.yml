@@ -1,0 +1,13 @@
+# Local MySQL for development. Set MYSQL_PASSWORD in your shell or a .env file. It has no default on purpose.
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: zebl
+      MYSQL_USER: zebl
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    ports: ["127.0.0.1:13306:3306"]
+    volumes: [zebl_mysql:/var/lib/mysql]
+volumes:
+  zebl_mysql:
